@@ -20,7 +20,7 @@ const Hero = () => {
 const Section = styled.section`
   background: linear-gradient(135deg, navy, darkgreen);
   width: 100%;
-  height: 86.3vh;
+  height: 86.9vh;
   display: flex;
   align-items: center;
   justify-content: center;
