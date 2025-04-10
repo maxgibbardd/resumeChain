@@ -1,38 +1,49 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
-import Link from 'next/link'
-import { logOut } from '@/backend/Auth';
-import { useStateContext } from '@/context/StateContext';
-import Home from '@/components/Dashboard/Home'
-const Navbar = () => {
-  const { setUser } = useStateContext()
 
+const Navbar = () => {
   return (
     <Nav>
-      <Logo onClick={() => logOut(setUser)} href="/">CMPSC 263</Logo>
-      <Home></Home>
+      <Logo href="/">ResumeChain</Logo>
       <NavLinks>
-        <ButtonLink href="/auth/signup">Sign Up</ButtonLink>
-        <ButtonLink href="/auth/login">Login</ButtonLink>
+        <NavItem href="/">Home</NavItem>
+        <NavItem href="/vault">Vault</NavItem>
+        <NavItem href="/verify">Verify Resume</NavItem>
+        <NavItem href="/profile">Profile</NavItem>
       </NavLinks>
     </Nav>
   );
 };
 
 const Nav = styled.nav`
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: navy;
+  color: white;
 `;
 
 const Logo = styled(Link)`
-
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
 `;
 
 const NavLinks = styled.div`
-
+  display: flex;
+  gap: 1rem;
 `;
 
-const ButtonLink = styled(Link)`
-
+const NavItem = styled(Link)`
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  &:hover {
+    color: lightgreen;
+  }
 `;
 
 export default Navbar;

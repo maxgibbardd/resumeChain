@@ -6,10 +6,10 @@ const Footer = () => {
     <FooterSection>
       <FooterContainer>
         <LeftContainer>
-          © {new Date().getFullYear()} CMPSC 263
+          © {new Date().getFullYear()} ResumeChain
         </LeftContainer>
         <CenterContainer>
-          <Link href="#">Privacy Policy</Link> | <Link href="#">Terms of Service</Link>
+          <FooterLink href="#">Privacy Policy</FooterLink> | <FooterLink href="#">Terms of Service</FooterLink>
         </CenterContainer>
         <RightContainer>
           <SocialIcon href="#" aria-label="Facebook">FB</SocialIcon>
@@ -22,31 +22,46 @@ const Footer = () => {
 };
 
 const FooterSection = styled.footer`
-
+  background-color: navy;
+  padding: 1rem 0;
+  color: white;
 `;
 
 const FooterContainer = styled.div`
-
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
 `;
 
-const LeftContainer = styled.div``;
+const LeftContainer = styled.div`
+  font-size: 0.9rem;
+`;
 
-const CenterContainer = styled.div``;
+const CenterContainer = styled.div`
+  font-size: 0.9rem;
+`;
 
 const RightContainer = styled.div`
-
+  display: flex;
+  gap: 1rem;
 `;
 
-const Link = styled.a`
-
+const FooterLink = styled.a`
+  color: white;
+  text-decoration: none;
+  &:hover {
+    color: lightgreen;
+  }
 `;
 
 const SocialIcon = styled.a`
-  color: #fff;
+  color: white;
   text-decoration: none;
-  font-size: 1.5rem;
   &:hover {
-    color: #007bff;
+    color: lightgreen;
   }
 `;
 
