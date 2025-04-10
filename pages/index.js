@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import Footer from '@/components/Footer';
+import Hero from '@/components/LandingPage/Hero';
+import Footer from '@/components/LandingPage/Footer';
 
 export default function Home() {
   return (
