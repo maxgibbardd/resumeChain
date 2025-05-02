@@ -62,6 +62,7 @@ const NavItem = styled(Link)`
   font-size: 1rem;
   &:hover {
     color: lightgreen;
+    text-decoration: underline;
   }
 `;
 
