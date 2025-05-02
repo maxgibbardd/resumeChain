@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Navbar from '@/components/Dashboard/Navbar';
-import Footer from '@/components/LandingPage/Footer';
-import { useResumeRegistry } from '@/hooks/useResumeRegistry';
-import { useIPFSUpload } from '@/hooks/useIPFSUpload';
-import { useWallet } from '@/hooks/useWallet';
+import Navbar from '../components/Dashboard/Navbar';
+import Footer from '../components/LandingPage/Footer';
+import { useResumeRegistry } from '../hooks/useResumeRegistry';
+import { useIPFSUpload } from '../hooks/useIPFSUpload';
+import { useWallet } from '../hooks/useWallet';
 
 const Vault = () => {
   const { account } = useWallet(); // ✅ Get the connected wallet

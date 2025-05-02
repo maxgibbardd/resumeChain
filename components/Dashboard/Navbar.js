@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { useWallet } from '@/hooks/useWallet';
+import { useWallet } from '../../hooks/useWallet';
 
 const Navbar = () => {
   const { account, connect } = useWallet();

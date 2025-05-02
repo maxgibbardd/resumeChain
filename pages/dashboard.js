@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '@/components/Dashboard/Navbar';
-import Footer from '@/components/LandingPage/Footer';
-import { useWallet } from '@/hooks/useWallet';
-import { useResumeRegistry } from '@/hooks/useResumeRegistry';
+import Navbar from '../components/Dashboard/Navbar';
+import Footer from '../components/LandingPage/Footer';
+import { useWallet } from '../hooks/useWallet';
+import { useResumeRegistry } from '../hooks/useResumeRegistry';
 
 export default function Dashboard() {
   const { account } = useWallet();
