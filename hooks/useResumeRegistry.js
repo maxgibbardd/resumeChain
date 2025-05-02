@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
-import ResumeRegistryABI from '@/contracts/ResumeRegistryABI.json';
+import { ethers } from 'ethers'; // ✅ REQUIRED
+import ABI from '@/contracts/ResumeRegistry.json';
 
-const CONTRACT_ADDRESS = "0xf8e81D47203A594245E36C48e151709F0C19fBe8";
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
-export const useResumeRegistry = () => {
+export const useResumeRegistry = (account) => {
   const [contract, setContract] = useState(null);
 
   useEffect(() => {
-    if (typeof window.ethereum !== "undefined") {
+    if (typeof window !== 'undefined' && window.ethereum && account) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      const resumeRegistry = new ethers.Contract(CONTRACT_ADDRESS, ResumeRegistryABI, signer);
-      setContract(resumeRegistry);
+      const c = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
+      setContract(c);
+      console.log("✅ Smart contract loaded:", CONTRACT_ADDRESS);
+    } else {
+      console.warn("⚠️ Contract NOT loaded — window.ethereum or account is missing.");
     }
-  }, []);
+  }, [account]);
 
   return { contract };
 };

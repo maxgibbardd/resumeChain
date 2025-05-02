@@ -4,9 +4,11 @@ import Navbar from '@/components/Dashboard/Navbar';
 import Footer from '@/components/LandingPage/Footer';
 import { useResumeRegistry } from '@/hooks/useResumeRegistry';
 import { useIPFSUpload } from '@/hooks/useIPFSUpload';
+import { useWallet } from '@/hooks/useWallet';
 
 const Vault = () => {
-  const { contract } = useResumeRegistry();
+  const { account } = useWallet(); // ✅ Get the connected wallet
+  const { contract } = useResumeRegistry(account); // ✅ Pass it to the hook
   const { uploadFile } = useIPFSUpload();
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -28,20 +30,19 @@ const Vault = () => {
     }
     if (!contract) {
       setError("Smart contract not loaded. Please ensure your wallet is connected.");
+      console.warn("Contract not loaded — check if account is null or contract address is wrong.");
       return;
     }
 
     try {
       setTxStatus("Uploading file to IPFS via NFT.Storage...");
-      // Upload the file to IPFS using NFT.Storage
       const cid = await uploadFile(selectedFile);
       setTxStatus(`File uploaded! CID: ${cid}. Submitting transaction to blockchain...`);
 
-      // Call the smart contract method with the IPFS hash (CID)
       const tx = await contract.uploadResume(cid);
       await tx.wait();
       setTxStatus("Resume stored on blockchain successfully!");
-      setSelectedFile(null); // Reset file input
+      setSelectedFile(null);
 
     } catch (err) {
       console.error(err);
@@ -73,7 +74,6 @@ const Vault = () => {
 };
 
 // Styled Components
-
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
