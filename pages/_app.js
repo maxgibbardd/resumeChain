@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import { StateContext } from "@/context/StateContext"
+import { useState, createContext } from 'react';
 import { createGlobalStyle } from 'styled-components'
+
+export const WalletContext = createContext();
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -16,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
 `
 
 export default function App({ Component, pageProps }) {
+  const [account, setAccount] = useState(null);
   return (
     <>
       <Head>
@@ -32,9 +36,9 @@ export default function App({ Component, pageProps }) {
 
       <GlobalStyle />
 
-      <StateContext>
+      <WalletContext.Provider value={{ account, setAccount }}>
         <Component {...pageProps} />
-      </StateContext>
+      </WalletContext.Provider>
     </>
   )
 }

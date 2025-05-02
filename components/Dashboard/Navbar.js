@@ -2,8 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { useWallet } from '@/hooks/useWallet';
 
 const Navbar = () => {
+  const { account, connect } = useWallet();
   return (
     <Nav>
       <Link href="/" passHref legacyBehavior>
@@ -26,6 +28,12 @@ const Navbar = () => {
         <NavItem href="/verify">Verify Resume</NavItem>
         <NavItem href="/profile">Profile</NavItem>
       </NavLinks>
+
+      {account ? (
+        <WalletBadge>{account.slice(0,6)}…{account.slice(-4)}</WalletBadge>
+      ) : (
+        <ConnectBtn onClick={connect}>Connect Wallet</ConnectBtn>
+      )}
     </Nav>
   );
 };
@@ -66,4 +74,10 @@ const NavItem = styled(Link)`
   }
 `;
 
+const ConnectBtn = styled.button`…`;
+
+
+const WalletBadge = styled.span`…`;
+
 export default Navbar;
+
